@@ -252,7 +252,7 @@ var CONFIG = {
 
   // STEP 1 - type your personal Gmail address between the quotes.
   // It is used only to pick the right Google account for the calendar and personal links.
-  personalEmail: 'balajisrinivasanchn@gmail.com',
+  personalEmail: '',
 
   // STEP 2 - after the Windows launcher is installed, change false to true
   // (or switch it on from the gear menu on the page).
@@ -260,7 +260,7 @@ var CONFIG = {
 
   // STEP 3 - paste the web-app URL of your PRIVATE Google script (ends in /exec).
   // Used only for the Tasks panel on Home. Leave empty until the script is deployed.
-  privateScriptUrl: 'https://script.google.com/macros/s/AKfycby32F5Fg__kBzkf8EuR-E7ln0D7tBb-RcJQs5WT0cqvQKusLlCIDD8S-HDG2DWRjrNw/exec',
+  privateScriptUrl: '',
 
   subscriptionsUrl: 'https://balajisrinivasanchn-lang.github.io/subscriptions/'
 };
@@ -400,7 +400,7 @@ $('setWin').value = S.win;
 $('setWin').addEventListener('change', function(){ S.win = this.value; lsSet('win', S.win); renderTiles(); });
 $('setLauncher').checked = S.launcher;
 $('setLauncher').addEventListener('change', function(){ S.launcher = this.checked; lsSet('launcher', S.launcher ? '1' : '0'); renderTiles(); });
-if (!isWin){ $('rowLauncher').hidden = true; $('launcherHelp').hidden = true; }
+if (!isWin){ $('launcherHelp').textContent = 'Windows PC only. On this device the tiles open normally, so this switch has no effect here.'; }
 
 /* =====================================================================
    Opening links
