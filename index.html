@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Balaji Home</title>
+<meta name="theme-color" content="#0B2545">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --ink:#0F172A; --muted:#566275; --line:#E2E8F0;
+  --navy:#0B2545; --navy2:#13315C; --accent:#1D4ED8; --accent-soft:#E8EEFD; --teal:#0E9F8E;
+  --shadow:0 1px 2px rgba(15,23,42,.06),0 4px 14px rgba(15,23,42,.05);
+  --shadow-hover:0 2px 4px rgba(15,23,42,.08),0 10px 24px rgba(15,23,42,.10);
+}
+:root[data-theme="dark"]{
+  --bg:#0A111F; --surface:#111B2E; --ink:#E7ECF5; --muted:#9AA7BD; --line:#223049;
+  --navy:#08142B; --navy2:#0E2347; --accent:#7AA7FF; --accent-soft:#16264A; --teal:#2DD4BF;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.25);
+  --shadow-hover:0 2px 4px rgba(0,0,0,.5),0 10px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+
+/* header */
+.top{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(8,20,43,.25)}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 6px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:34px;height:34px;border-radius:9px;background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex:0 0 auto}
+.brand h1{margin:0;font-size:22px;font-weight:800;letter-spacing:-.3px;white-space:nowrap}
+.clockbox{display:flex;align-items:center;gap:12px}
+.clock{text-align:right;line-height:1.15}
+.clock .t{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.clock .d{font-size:12px;color:#C7D3EA}
+.iconbtn{width:36px;height:36px;border-radius:9px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.iconbtn:hover{background:rgba(255,255,255,.18)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{background:none;border:0;border-bottom:3px solid transparent;color:#C7D3EA;padding:9px 14px;font-weight:600;font-size:13.5px;cursor:pointer;white-space:nowrap}
+nav.tabs button:hover{color:#fff}
+nav.tabs button[aria-current="page"]{color:#fff;border-bottom-color:#5B8CFF}
+.pop{position:absolute;right:20px;top:56px;width:290px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-hover);padding:14px;z-index:30}
+.pop h3{margin:0 0 10px;font-size:13px}
+.pop label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;padding:7px 0;border-top:1px solid var(--line)}
+.pop select{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 8px}
+.pop small{display:block;color:var(--muted);font-size:11.5px;margin-top:6px}
+
+/* cards */
+main{padding:16px 0 28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px}
+.card h2{margin:0 0 12px;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:10px;letter-spacing:.1px}
+.card h2 .sub{font-weight:500;color:var(--muted);font-size:12px}
+.cols{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;margin-top:16px}
+.col-main{flex:1.25 1 520px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.col-side{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+/* toolbar */
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;padding:12px 14px}
+.hello{font-weight:700;font-size:15px}
+.hello span{display:block;font-weight:500;color:var(--muted);font-size:12px}
+form.search{display:flex;gap:8px;flex:1 1 420px;max-width:640px}
+form.search select{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:0 10px;min-height:40px}
+form.search input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:0 12px;min-height:40px}
+form.search button{border:0;background:var(--accent);color:#fff;border-radius:10px;padding:0 16px;min-height:40px;font-weight:600;cursor:pointer}
+:root[data-theme="dark"] form.search button{color:#08142B}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);transition:box-shadow .15s,transform .15s,border-color .15s;min-height:68px;cursor:pointer}
+.tile:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);border-color:var(--c)}
+.chip{flex:0 0 auto;width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent)}
+.tile .tt{font-weight:700;font-size:13.5px;line-height:1.25}
+.tile .ts{font-size:11px;color:var(--muted);line-height:1.3}
+.tile .key{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+
+/* news */
+.tabsmall{display:flex;gap:6px}
+.tabsmall button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 14px;font-weight:600;font-size:12.5px;cursor:pointer;min-height:32px}
+.tabsmall button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .tabsmall button[aria-pressed="true"]{color:#08142B}
+.news{list-style:none;margin:0;padding:0}
+.news li{border-top:1px solid var(--line)}
+.news a{display:block;padding:10px 2px}
+.news a:hover .nt{color:var(--accent)}
+.nt{font-weight:600;font-size:14px;line-height:1.35}
+.nm{font-size:11.5px;color:var(--muted);margin-top:2px}
+.msg{color:var(--muted);font-size:13px;padding:8px 0}
+.linkbtn{background:none;border:0;color:var(--accent);font-weight:600;cursor:pointer;padding:0;font-size:12.5px}
+
+/* frames */
+.frame{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff}
+.frame-note{font-size:11.5px;color:var(--muted);margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+
+/* weather & quote */
+.wx-top{display:flex;align-items:center;gap:12px}
+.wx-temp{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1}
+.wx-desc{font-size:13px;font-weight:600}
+.wx-meta{font-size:11.5px;color:var(--muted)}
+.wx-days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.wx-day{background:var(--bg);border-radius:10px;padding:8px;text-align:center;font-size:12px}
+.wx-day b{display:block;font-size:12px}
+.quote{font-size:16px;font-weight:600;line-height:1.45;margin:0}
+.qa{color:var(--muted);font-size:12.5px;margin-top:8px}
+.qbar{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+
+footer{padding:6px 0 28px;color:var(--muted);font-size:11.5px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+#view-subs .frame{height:calc(100vh - 170px);min-height:480px}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin:14px 0 10px}
+.bar h2{margin:0;font-size:16px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer;min-height:38px}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+
+@media (max-width:640px){
+  .wrap{padding:0 14px}
+  .brand h1{font-size:19px}
+  .clock .t{font-size:18px}
+  .clock .d{font-size:11px}
+  .tiles{grid-template-columns:1fr}
+  .pop{right:14px}
+  .tile .key{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <div class="brand"><div class="logo" aria-hidden="true">B</div><h1>Balaji Home</h1></div>
+      <div class="clockbox">
+        <div class="clock" aria-live="off"><div class="t" id="clockT">--:--</div><div class="d" id="clockD"></div></div>
+        <button class="iconbtn" id="btnTheme" title="Toggle light / dark (T)" aria-label="Toggle light or dark theme"></button>
+        <button class="iconbtn" id="btnSettings" title="Settings" aria-label="Settings"></button>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Portal pages"></nav>
+  </div>
+  <div class="pop" id="pop" hidden role="dialog" aria-label="Settings">
+    <h3>Settings</h3>
+    <label>Open tiles in
+      <select id="setWin"><option value="window">New window</option><option value="tab">New tab</option></select>
+    </label>
+    <label id="rowLauncher">Windows profile launcher
+      <input type="checkbox" id="setLauncher">
+    </label>
+    <small id="launcherHelp">Opens Work and Volunteer tiles in their own Chrome profile. Needs the one-time launcher install (see setup guide).</small>
+    <small>Shortcuts: / search · T theme · H home · 1-8 open a tile</small>
+  </div>
+</header>
+
+<main class="wrap" id="view-home">
+  <section class="card toolbar" aria-label="Search">
+    <div class="hello" id="hello"></div>
+    <form class="search" id="searchForm" role="search">
+      <select id="engine" aria-label="Search with">
+        <option value="g">Google</option>
+        <option value="y">YouTube</option>
+        <option value="m">Maps</option>
+      </select>
+      <input id="q" type="search" placeholder="Search the web  ( / )" autocomplete="off" aria-label="Search query">
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <div class="cols">
+    <div class="col-main">
+      <section class="card" aria-labelledby="hCal">
+        <h2 id="hCal">Calendar <span class="sub">Personal &middot; upcoming</span></h2>
+        <div id="calBox"></div>
+      </section>
+
+      <section class="card" aria-labelledby="hTasks">
+        <h2 id="hTasks">Tasks <span class="sub">Google Tasks &middot; Personal</span></h2>
+        <div id="taskBox"></div>
+      </section>
+
+      <section class="card" aria-labelledby="hNews">
+        <h2 id="hNews">
+          <span>Google News Flash</span>
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="tabsmall" id="newsTabs"></span>
+            <button class="iconbtn" id="newsRefresh" style="width:32px;height:32px;border-color:var(--line);background:var(--bg);color:var(--ink)" title="Refresh news" aria-label="Refresh news"></button>
+          </span>
+        </h2>
+        <ul class="news" id="newsList"></ul>
+        <div class="nm" id="newsMeta"></div>
+      </section>
+    </div>
+
+    <div class="col-side">
+      <section class="card" aria-labelledby="hLaunch">
+        <h2 id="hLaunch">Quick Launch <span class="sub" id="launchSub"></span></h2>
+        <div class="tiles" id="tiles"></div>
+      </section>
+
+      <div class="duo">
+        <section class="card" aria-labelledby="hWx">
+          <h2 id="hWx">Weather <span class="sub" id="wxCity"></span></h2>
+          <div id="wxBox"><div class="msg">Loading weather&hellip;</div></div>
+        </section>
+        <section class="card" aria-labelledby="hQ">
+          <h2 id="hQ">Thought for the day</h2>
+          <p class="quote" id="qText"></p>
+          <div class="qa" id="qAuthor"></div>
+          <div class="qbar"><span></span><button class="linkbtn" id="qNext">Another</button></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+<main class="wrap" id="view-subs" hidden>
+  <div class="bar">
+    <h2>YouTube Subscriptions</h2>
+    <button class="btn" id="subsOpen">Open in new window</button>
+  </div>
+  <iframe class="frame" id="subsFrame" title="YouTube subscriptions" loading="lazy"></iframe>
+</main>
+
+<div class="wrap">
+  <footer>
+    <span id="foot1"></span>
+    <span id="foot2"></span>
+  </footer>
+</div>
+
+<noscript><div class="wrap"><p>This page needs JavaScript.</p></div></noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* =====================================================================
+   SETTINGS YOU CAN EDIT  (change a value here, then commit on GitHub)
+   ===================================================================== */
+var CONFIG = {
+  version: '2026-11-22',
+  name: 'Balaji',
+  city: { name: 'Chennai', lat: 13.0827, lon: 80.2707 },
+
+  // STEP 1 - type your personal Gmail address between the quotes.
+  // It is used only to pick the right Google account for the calendar and personal links.
+  personalEmail: '',
+
+  // STEP 2 - after the Windows launcher is installed, change false to true
+  // (or switch it on from the gear menu on the page).
+  useLauncher: false,
+
+  // STEP 3 - paste the web-app URL of your PRIVATE Google script (ends in /exec).
+  // Used only for the Tasks panel on Home. Leave empty until the script is deployed.
+  privateScriptUrl: '',
+
+  subscriptionsUrl: 'https://balajisrinivasanchn-lang.github.io/subscriptions/'
+};
+
+var IDS = {
+  personal:  'AKfycbxOk1dSRDzQ0BjboyPq_slKtQmmYoH_tuInByKEwbY43mmIDNA1V9pdlqdTZ56ElQNbQw',
+  work:      'AKfycbzuVUbiHEadLfnJiOLISmq3NbQ82IOSZb80RFUTcJy6vI50AjQ2JuOcaUpFTrJZyhNM',
+  volunteer: 'AKfycbwx9RWewmFS5mpwAycmTdET2D8Lu5AjreHRy2EtG543JU6h2MPRV8T973PGL0p1X4iJ1A',
+  diary:     'AKfycbykhSWHPEnfBX3dLy9beuCVFsHmrA2V_2m3C_lu1Ont7H6K6bZrD37Mz98lGUasIzNOgg',
+  mytasks:   'AKfycbyl9HtvGFTHO__kXDUXaRtixyhTHNUCR1eH7I7C1wkM8PEsr5dUeqfCXKwbMk7Mkg8x'
+};
+
+// Picks the personal Google account for a link when STEP 1 is filled in.
+function au(prefix){
+  return CONFIG.personalEmail ? (prefix + 'authuser=' + encodeURIComponent(CONFIG.personalEmail)) : '';
+}
+
+// key = name used by the Windows launcher (keep in sync with BalajiLauncher.ps1)
+var TILES = [
+  { key:'personal',  title:'Personal Bookmarks',  who:'Personal account', icon:'bookmark',  color:'#2563EB', profile:'Personal',
+    url:'https://script.google.com/macros/s/'+IDS.personal+'/exec'+au('?') },
+  { key:'work',      title:'Work Bookmarks',      who:'Work account',     icon:'briefcase', color:'#0E7490', profile:'Work',
+    url:'https://script.google.com/a/macros/hisomega.org/s/'+IDS.work+'/exec' },
+  { key:'volunteer', title:'Volunteer Bookmarks', who:'Volunteer account',icon:'heart',     color:'#7C3AED', profile:'Volunteer',
+    url:'https://script.google.com/a/macros/volunteer.heartfulness.org/s/'+IDS.volunteer+'/exec' },
+  { key:'diary',     title:'Diary Entry',         who:'Personal account', icon:'book',      color:'#B45309', profile:'Personal',
+    url:'https://script.google.com/macros/s/'+IDS.diary+'/exec'+au('?') },
+  { key:'mytasks',   title:'My Tasks (Work)',     who:'Work account',     icon:'checklist', color:'#475569', profile:'Work',
+    url:'https://script.google.com/a/macros/hisomega.org/s/'+IDS.mytasks+'/exec' },
+  { key:'feedly',    title:'Feedly',              who:'Personal account', icon:'rss',       color:'#15803D', profile:'Personal',
+    url:'https://feedly.com/i/my' },
+  { key:'tamil',     title:'Tamil Live News',     who:'YouTube playlist', icon:'play',      color:'#DC2626', profile:'Personal',
+    url:'https://www.youtube.com/playlist?list=PLJ3jmAMsLWBk' },
+  { key:'watchlater',title:'Watch Later',         who:'Personal account', icon:'clock',     color:'#4F46E5', profile:'Personal',
+    url:'https://www.youtube.com/playlist?list=WL'+au('&') }
+];
+function tile(k){ for (var i=0;i<TILES.length;i++) if (TILES[i].key===k) return TILES[i]; }
+
+var NAV = [
+  { id:'home', label:'Home', type:'page' },
+  { id:'mytasks', label:'My Tasks', type:'tile', tile:'mytasks' },
+  { id:'subs', label:'Subscriptions', type:'page' },
+  { id:'tamil', label:'Tamil Live News', type:'tile', tile:'tamil' },
+  { id:'watchlater', label:'Watch Later', type:'tile', tile:'watchlater' }
+];
+
+var FEEDS = {
+  national: 'https://news.google.com/rss/headlines/section/topic/NATION?hl=en-IN&gl=IN&ceid=IN:en',
+  tamilnadu:'https://news.google.com/rss/search?q=Tamil+Nadu+when:1d&hl=en-IN&gl=IN&ceid=IN:en'
+};
+var NEWS_TABS = [ {id:'national', label:'National'}, {id:'tamilnadu', label:'Tamil Nadu'} ];
+
+var QUOTES = [
+  {t:'The journey of a thousand miles begins with a single step.', a:'Lao Tzu'},
+  {t:'Well done is better than well said.', a:'Benjamin Franklin'},
+  {t:'Dream, dream, dream. Dreams transform into thoughts, and thoughts result in action.', a:'A. P. J. Abdul Kalam'},
+  {t:'A smooth sea never made a skilled sailor.', a:'Proverb'},
+  {t:'Little drops of water make the mighty ocean.', a:'Proverb'},
+  {t:'Slow and steady wins the race.', a:'Aesop'},
+  {t:'Start where you are, with what you have.', a:''},
+  {t:'Quiet the mind, and the heart will speak.', a:''},
+  {t:'Small daily improvements add up to big results.', a:''},
+  {t:'Measure twice, cut once.', a:'Proverb'},
+  {t:'What gets scheduled gets done.', a:''},
+  {t:'Clarity comes from action, not from thought.', a:''},
+  {t:'Be kind, work steadily, keep learning.', a:''},
+  {t:'Do the next right thing.', a:''},
+  {t:'Every expert was once a beginner.', a:'Proverb'},
+  {t:'Where there is a will, there is a way.', a:'Proverb'},
+  {t:'A stitch in time saves nine.', a:'Proverb'},
+  {t:'Rome was not built in a day.', a:'Proverb'},
+  {t:'Fall seven times, stand up eight.', a:'Japanese proverb'},
+  {t:'Order in the little things makes room for the big ones.', a:''}
+];
+
+/* =====================================================================
+   Helpers
+   ===================================================================== */
+var $ = function(id){ return document.getElementById(id); };
+var isWin = /Windows/i.test(navigator.userAgent);
+var PFX = 'bh_';
+function lsGet(k, d){ try { var v = localStorage.getItem(PFX+k); return v===null ? d : v; } catch(e){ return d; } }
+function lsSet(k, v){ try { localStorage.setItem(PFX+k, v); } catch(e){} }
+function ssGet(k){ try { return sessionStorage.getItem(PFX+k); } catch(e){ return null; } }
+function ssSet(k, v){ try { sessionStorage.setItem(PFX+k, v); } catch(e){} }
+function el(tag, cls, text){ var n=document.createElement(tag); if(cls) n.className=cls; if(text!==undefined) n.textContent=text; return n; }
+
+var ICONS = {
+  bookmark:'<path d="M6 3h12v18l-6-4-6 4z"/>',
+  briefcase:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>',
+  heart:'<path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>',
+  book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h6"/>',
+  checklist:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 12l3 3 6-6"/>',
+  rss:'<path d="M5 5a14 14 0 0 1 14 14M5 11a8 8 0 0 1 8 8"/><circle cx="6" cy="18" r="1.5"/>',
+  play:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',
+  moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',
+  refresh:'<path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/>',
+  wclear:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',
+  wcloud:'<path d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 0 9z"/>',
+  wrain:'<path d="M7 15a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 6a4.5 4.5 0 0 1 0 9z"/><path d="M8 19l-1 2M12 19l-1 2M16 19l-1 2"/>',
+  wstorm:'<path d="M7 14a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 5a4.5 4.5 0 0 1 0 9z"/><path d="M12 14l-2 4h3l-2 4"/>',
+  wfog:'<path d="M4 9h16M6 13h12M4 17h16"/>'
+};
+function ic(name, size){
+  size = size || 20;
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICONS[name]+'</svg>';
+}
+
+/* =====================================================================
+   Settings and theme
+   ===================================================================== */
+var S = {
+  win: lsGet('win', 'window'),
+  launcher: lsGet('launcher', CONFIG.useLauncher ? '1' : '0') === '1'
+};
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  $('btnTheme').innerHTML = ic(t==='dark' ? 'sun' : 'moon', 18);
+  var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', t==='dark' ? '#08142B' : '#0B2545');
+}
+var theme = lsGet('theme', (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light');
+applyTheme(theme);
+function toggleTheme(){ theme = theme==='dark' ? 'light' : 'dark'; lsSet('theme', theme); applyTheme(theme); }
+$('btnTheme').addEventListener('click', toggleTheme);
+$('btnSettings').innerHTML = ic('gear', 18);
+$('newsRefresh').innerHTML = ic('refresh', 16);
+
+$('btnSettings').addEventListener('click', function(){ var p=$('pop'); p.hidden = !p.hidden; });
+document.addEventListener('click', function(e){
+  var p=$('pop'); if (p.hidden) return;
+  if (!p.contains(e.target) && e.target.closest && !e.target.closest('#btnSettings')) p.hidden = true;
+});
+$('setWin').value = S.win;
+$('setWin').addEventListener('change', function(){ S.win = this.value; lsSet('win', S.win); renderTiles(); });
+$('setLauncher').checked = S.launcher;
+$('setLauncher').addEventListener('change', function(){ S.launcher = this.checked; lsSet('launcher', S.launcher ? '1' : '0'); renderTiles(); });
+if (!isWin){ $('rowLauncher').hidden = true; $('launcherHelp').hidden = true; }
+
+/* =====================================================================
+   Opening links
+   ===================================================================== */
+function useLauncherFor(t){ return isWin && S.launcher && t && t.key; }
+function openUrl(url){
+  var w;
+  if (S.win === 'window') w = window.open(url, '_blank', 'width=1280,height=860');
+  else w = window.open(url, '_blank');
+  if (w){ try { w.opener = null; } catch(e){} }
+  else window.open(url, '_blank');
+}
+function go(t){
+  if (useLauncherFor(t)){ window.location.href = 'balajichrome://open/' + t.key; return; }
+  openUrl(t.url);
+}
+
+/* =====================================================================
+   Tabs / router
+   ===================================================================== */
+var current = 'home';
+function renderNav(){
+  var box = $('tabs'); box.innerHTML = '';
+  NAV.forEach(function(n){
+    var b = el('button', '', n.label);
+    b.type = 'button';
+    if (n.type==='page' && n.id===current) b.setAttribute('aria-current','page');
+    b.addEventListener('click', function(){
+      if (n.type==='page') show(n.id); else go(tile(n.tile));
+    });
+    box.appendChild(b);
+  });
+}
+function show(id){
+  current = id;
+  lsSet('page', id);
+  $('view-home').hidden = id!=='home';
+  $('view-subs').hidden = id!=='subs';
+  if (id==='subs'){
+    var f = $('subsFrame');
+    if (!f.getAttribute('src')) f.setAttribute('src', CONFIG.subscriptionsUrl);
+  }
+  renderNav();
+  window.scrollTo(0,0);
+}
+$('subsOpen').addEventListener('click', function(){ openUrl(CONFIG.subscriptionsUrl); });
+
+/* =====================================================================
+   Clock, greeting
+   ===================================================================== */
+function tick(){
+  var n = new Date();
+  $('clockT').textContent = n.toLocaleTimeString('en-IN', {hour:'numeric', minute:'2-digit'});
+  $('clockD').textContent = n.toLocaleDateString('en-IN', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  var h = n.getHours();
+  var g = h<12 ? 'Good morning' : (h<17 ? 'Good afternoon' : 'Good evening');
+  var hello = $('hello');
+  if (hello.getAttribute('data-h') !== g){
+    hello.setAttribute('data-h', g);
+    hello.innerHTML = '';
+    hello.appendChild(document.createTextNode(g + ', ' + CONFIG.name));
+    hello.appendChild(el('span', '', 'Here is your day at a glance'));
+  }
+}
+tick(); setInterval(tick, 1000);
+
+/* =====================================================================
+   Tiles
+   ===================================================================== */
+function renderTiles(){
+  var box = $('tiles'); box.innerHTML = '';
+  TILES.forEach(function(t, i){
+    var a = el('a', 'tile');
+    a.href = t.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    a.style.setProperty('--c', t.color);
+    a.setAttribute('aria-label', t.title + ' (' + t.who + ')');
+    var chip = el('span', 'chip'); chip.innerHTML = ic(t.icon, 22);
+    var txt = el('span', '');
+    txt.appendChild(el('div', 'tt', t.title));
+    txt.appendChild(el('div', 'ts', useLauncherFor(t) ? ('Opens in ' + t.profile + ' profile') : t.who));
+    a.appendChild(chip); a.appendChild(txt);
+    a.appendChild(el('span', 'key', String(i+1)));
+    a.addEventListener('click', function(e){
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault(); go(t);
+    });
+    box.appendChild(a);
+  });
+  $('launchSub').textContent = (isWin && S.launcher) ? 'Windows launcher on' : ('opens ' + (S.win==='window' ? 'in a new window' : 'in a new tab'));
+}
+
+/* =====================================================================
+   Search
+   ===================================================================== */
+$('searchForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var q = $('q').value.trim(); if (!q) return;
+  var eng = $('engine').value, url;
+  if (eng==='y') url = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q);
+  else if (eng==='m') url = 'https://www.google.com/maps/search/' + encodeURIComponent(q);
+  else url = 'https://www.google.com/search?q=' + encodeURIComponent(q);
+  openUrl(url);
+});
+
+/* =====================================================================
+   Calendar (personal) and Tasks (private script)
+   ===================================================================== */
+function renderCalendar(){
+  var box = $('calBox'); box.innerHTML = '';
+  if (!CONFIG.personalEmail){
+    box.appendChild(el('div', 'msg', 'Calendar needs your personal Gmail address. Type it into personalEmail at the top of index.html (setup guide, Part 1, step 7).'));
+    var b0 = el('button', 'linkbtn', 'Open Google Calendar'); b0.type='button';
+    b0.addEventListener('click', function(){ openUrl('https://calendar.google.com/calendar/u/0/r'); });
+    box.appendChild(b0);
+    return;
+  }
+  var src = 'https://calendar.google.com/calendar/embed?height=380&wkst=1&ctz=Asia%2FKolkata&showPrint=0&showTitle=0&showNav=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA&color=%231D4ED8&src=' + encodeURIComponent(CONFIG.personalEmail);
+  var f = el('iframe', 'frame'); f.src = src; f.style.height = '380px'; f.title = 'Personal calendar agenda'; f.loading = 'lazy';
+  box.appendChild(f);
+  var note = el('div', 'frame-note');
+  note.appendChild(el('span', '', 'Shows when this browser profile is signed in to your personal Google account.'));
+  var b = el('button', 'linkbtn', 'Open Google Calendar'); b.type='button';
+  b.addEventListener('click', function(){ openUrl('https://calendar.google.com/calendar/u/0/r' + au('?')); });
+  note.appendChild(b);
+  box.appendChild(note);
+}
+function renderTasks(){
+  var box = $('taskBox'); box.innerHTML = '';
+  if (!CONFIG.privateScriptUrl){
+    box.appendChild(el('div', 'msg', 'Tasks panel is not connected yet. Deploy the private script (setup guide, Part 2), then paste its URL into privateScriptUrl at the top of index.html.'));
+    var b0 = el('button', 'linkbtn', 'Open Google Tasks'); b0.type='button';
+    b0.addEventListener('click', function(){ openUrl('https://tasks.google.com/tasks/' + au('?')); });
+    box.appendChild(b0);
+    return;
+  }
+  var url = CONFIG.privateScriptUrl + (CONFIG.privateScriptUrl.indexOf('?')>-1 ? '&' : '?') + 'page=tasks';
+  var f = el('iframe', 'frame'); f.src = url; f.style.height = '300px'; f.title = 'Google Tasks'; f.loading = 'lazy';
+  box.appendChild(f);
+  var note = el('div', 'frame-note');
+  note.appendChild(el('span', '', 'If this stays blank, your browser blocked sign-in inside the page.'));
+  var b = el('button', 'linkbtn', 'Open tasks in a window'); b.type='button';
+  b.addEventListener('click', function(){ openUrl(url); });
+  note.appendChild(b);
+  box.appendChild(note);
+}
+
+/* =====================================================================
+   News (Google News RSS via public feed readers)
+   ===================================================================== */
+var newsTab = lsGet('newsTab', 'national');
+function relTime(d){
+  if (!(d instanceof Date) || isNaN(d)) return '';
+  var m = Math.round((Date.now() - d.getTime()) / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + ' min ago';
+  var h = Math.round(m / 60);
+  if (h < 24) return h + ' h ago';
+  return Math.round(h / 24) + ' d ago';
+}
+async function fetchFeed(url){
+  try {
+    var r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(url));
+    var j = await r.json();
+    if (j.status === 'ok' && j.items && j.items.length){
+      return j.items.map(function(i){ return { title:i.title, link:i.link, date:new Date(String(i.pubDate).replace(' ','T') + 'Z') }; });
+    }
+  } catch(e){}
+  var r2 = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url));
+  var t = await r2.text();
+  var x = new DOMParser().parseFromString(t, 'text/xml');
+  return Array.prototype.slice.call(x.querySelectorAll('item')).map(function(it){
+    return { title: it.querySelector('title').textContent, link: it.querySelector('link').textContent, date: new Date(it.querySelector('pubDate').textContent) };
+  });
+}
+function renderNewsTabs(){
+  var box = $('newsTabs'); box.innerHTML = '';
+  NEWS_TABS.forEach(function(t){
+    var b = el('button', '', t.label); b.type='button';
+    b.setAttribute('aria-pressed', t.id===newsTab ? 'true' : 'false');
+    b.addEventListener('click', function(){ newsTab = t.id; lsSet('newsTab', t.id); renderNewsTabs(); loadNews(false); });
+    box.appendChild(b);
+  });
+}
+async function loadNews(force){
+  var list = $('newsList'), meta = $('newsMeta');
+  var ck = 'news_' + newsTab, cached = ssGet(ck), items = null, stamp = null;
+  if (!force && cached){
+    try { var c = JSON.parse(cached); if (Date.now() - c.at < 10*60*1000){ items = c.items.map(function(i){ return {title:i.title, link:i.link, date:new Date(i.date)}; }); stamp = c.at; } } catch(e){}
+  }
+  if (!items){
+    list.innerHTML = ''; list.appendChild(el('li', 'msg', 'Loading headlines…')); meta.textContent = '';
+    try {
+      items = (await fetchFeed(FEEDS[newsTab])).slice(0, 7);
+      stamp = Date.now();
+      ssSet(ck, JSON.stringify({at:stamp, items:items.map(function(i){ return {title:i.title, link:i.link, date:i.date.toISOString()}; })}));
+    } catch(e){
+      list.innerHTML = ''; list.appendChild(el('li', 'msg', 'Could not load news right now. Try Refresh in a moment.'));
+      return;
+    }
+  }
+  list.innerHTML = '';
+  items.forEach(function(i){
+    var li = el('li', '');
+    var a = el('a', ''); a.href = i.link; a.target = '_blank'; a.rel = 'noopener noreferrer';
+    var title = i.title, src = '', k = title.lastIndexOf(' - ');
+    if (k > 10){ src = title.slice(k + 3); title = title.slice(0, k); }
+    a.appendChild(el('div', 'nt', title));
+    a.appendChild(el('div', 'nm', (src ? src + ' · ' : '') + relTime(i.date)));
+    li.appendChild(a); list.appendChild(li);
+  });
+  meta.textContent = 'Updated ' + new Date(stamp).toLocaleTimeString('en-IN', {hour:'numeric', minute:'2-digit'});
+  CONFIG._newsAt = stamp; footer();
+}
+$('newsRefresh').addEventListener('click', function(){ loadNews(true); });
+
+/* =====================================================================
+   Weather (Open-Meteo, no key needed)
+   ===================================================================== */
+function wxInfo(code){
+  if (code === 0) return ['Clear sky','wclear'];
+  if (code <= 2) return ['Partly cloudy','wcloud'];
+  if (code === 3) return ['Overcast','wcloud'];
+  if (code === 45 || code === 48) return ['Fog','wfog'];
+  if (code >= 51 && code <= 57) return ['Drizzle','wrain'];
+  if (code >= 61 && code <= 67) return ['Rain','wrain'];
+  if (code >= 80 && code <= 82) return ['Rain showers','wrain'];
+  if (code >= 95) return ['Thunderstorm','wstorm'];
+  return ['Cloudy','wcloud'];
+}
+async function loadWeather(){
+  $('wxCity').textContent = CONFIG.city.name;
+  var box = $('wxBox');
+  try {
+    var u = 'https://api.open-meteo.com/v1/forecast?latitude=' + CONFIG.city.lat + '&longitude=' + CONFIG.city.lon +
+      '&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m' +
+      '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=3&timezone=Asia%2FKolkata';
+    var r = await fetch(u); var j = await r.json();
+    var c = j.current, info = wxInfo(c.weather_code);
+    box.innerHTML = '';
+    var top = el('div', 'wx-top');
+    var ico = el('div', ''); ico.style.color = 'var(--accent)'; ico.innerHTML = ic(info[1], 40);
+    var mid = el('div', '');
+    mid.appendChild(el('div', 'wx-temp', Math.round(c.temperature_2m) + '°C'));
+    mid.appendChild(el('div', 'wx-desc', info[0]));
+    top.appendChild(ico); top.appendChild(mid); box.appendChild(top);
+    box.appendChild(el('div', 'wx-meta', 'Feels like ' + Math.round(c.apparent_temperature) + '° · Humidity ' + c.relative_humidity_2m + '% · Wind ' + Math.round(c.wind_speed_10m) + ' km/h'));
+    var days = el('div', 'wx-days');
+    for (var i = 0; i < j.daily.time.length; i++){
+      var d = new Date(j.daily.time[i] + 'T00:00:00');
+      var di = wxInfo(j.daily.weather_code[i]);
+      var cell = el('div', 'wx-day');
+      cell.appendChild(el('b', '', i === 0 ? 'Today' : d.toLocaleDateString('en-IN', {weekday:'short'})));
+      var ci = el('div', ''); ci.style.color = 'var(--accent)'; ci.innerHTML = ic(di[1], 22); cell.appendChild(ci);
+      cell.appendChild(el('div', '', Math.round(j.daily.temperature_2m_max[i]) + '° / ' + Math.round(j.daily.temperature_2m_min[i]) + '°'));
+      cell.appendChild(el('div', 'wx-meta', 'Rain ' + (j.daily.precipitation_probability_max[i] || 0) + '%'));
+      days.appendChild(cell);
+    }
+    box.appendChild(days);
+    CONFIG._wxAt = Date.now(); footer();
+  } catch(e){
+    box.innerHTML = ''; box.appendChild(el('div', 'msg', 'Weather is unavailable right now.'));
+  }
+}
+
+/* =====================================================================
+   Quote of the day
+   ===================================================================== */
+var qOffset = 0;
+function renderQuote(){
+  var day = Math.floor((Date.now() + 5.5*3600*1000) / 86400000);
+  var q = QUOTES[(day + qOffset) % QUOTES.length];
+  $('qText').textContent = '“' + q.t + '”';
+  $('qAuthor').textContent = q.a ? '— ' + q.a : '';
+}
+$('qNext').addEventListener('click', function(){ qOffset++; renderQuote(); });
+
+/* =====================================================================
+   Footer
+   ===================================================================== */
+function footer(){
+  $('foot1').textContent = 'Balaji Home · version ' + CONFIG.version;
+  var parts = [];
+  if (CONFIG._newsAt) parts.push('News ' + new Date(CONFIG._newsAt).toLocaleTimeString('en-IN', {hour:'numeric', minute:'2-digit'}));
+  if (CONFIG._wxAt) parts.push('Weather ' + new Date(CONFIG._wxAt).toLocaleTimeString('en-IN', {hour:'numeric', minute:'2-digit'}));
+  $('foot2').textContent = parts.length ? 'Last refreshed: ' + parts.join(' · ') : '';
+}
+
+/* =====================================================================
+   Keyboard shortcuts
+   ===================================================================== */
+document.addEventListener('keydown', function(e){
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  var tag = (e.target && e.target.tagName) || '';
+  if (/INPUT|SELECT|TEXTAREA/.test(tag)){ if (e.key === 'Escape') e.target.blur(); return; }
+  var k = e.key;
+  if (k === '/'){ e.preventDefault(); show('home'); $('q').focus(); }
+  else if (k === 't' || k === 'T') toggleTheme();
+  else if (k === 'h' || k === 'H') show('home');
+  else if (k === 'Escape') $('pop').hidden = true;
+  else if (/^[1-9]$/.test(k)){ var t = TILES[parseInt(k, 10) - 1]; if (t) go(t); }
+});
+
+/* =====================================================================
+   Start
+   ===================================================================== */
+renderTiles(); renderCalendar(); renderTasks(); renderNewsTabs(); renderQuote(); footer();
+show(lsGet('page', 'home') === 'subs' ? 'subs' : 'home');
+loadNews(false); loadWeather();
+setInterval(function(){ loadNews(false); }, 10*60*1000);
+setInterval(loadWeather, 30*60*1000);
+
+if ('serviceWorker' in navigator && location.protocol === 'https:'){
+  window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+}
+})();
+</script>
+</body>
+</html>
